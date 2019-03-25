@@ -9,7 +9,12 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-    <h2>SHOP_APP TEST PAGE</h2>
-    <a href="{% url 'shopapp-sign-out' %}">Logout</a>
+    <h2>SIGN_UP TEST PAGE</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ book_shop_form.as_p }}
+        <button type="submit">SignUp</button>
+    </form>
 </body>
 </html>
