@@ -15,6 +15,14 @@ def home(request):
 def shopapp_home(request):
     return render(request, 'shopapp/home.html', {})
 
+@login_required(login_url='/shopapp/sign-account/')
+def shopapp_account(request):
+    return render(request, 'shopapp/account.html', {})
+
+@login_required(login_url='/shopapp/book/')
+def shopapp_book(request):
+    return render(request, 'shopapp/book.html', {})
+
 
 def shopapp_sign_up(request):
     user_form = UserForm()

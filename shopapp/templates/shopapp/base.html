@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page %}BookShop{% endblock %}
+
+{% block sidebar %}
+ HELLO , {{ request.user }}
+ <hr>
+ <a href="{% url 'shopapp-account' %}">PROFILE</a>
+ -
+ <a href="{% url 'shopapp-book' %}">BOOKS</a>
+{% endblock %}

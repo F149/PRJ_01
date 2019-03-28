@@ -1,18 +1,15 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% extends 'base_signup.html' %}
+{% load bootstrap4 %}
+
+
+{% block title %} Login {% endblock %}
+{% block heading %} Book Shop Login page {% endblock %}
+
+{% block content %}
+	<form method="POST">
+	    {% csrf_token %}
+	    {% bootstrap_form form %}
+	    <button type="submit" class="btn btn-danger float-right">Login</button>
+	</form>
+<a href="{% url 'shopapp-sign-up' %}">Register Shop</a>
+{% endblock %}
