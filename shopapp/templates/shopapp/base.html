@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
 
-{% block page %}BookShop{% endblock %}
+{% block title %}BookShop{% endblock %}
 
 {% block sidebar %}
- HELLO , {{ request.user }}
- <hr>
- <a href="{% url 'shopapp-account' %}">PROFILE</a>
- -
- <a href="{% url 'shopapp-book' %}">BOOKS</a>
+<div class="text-center">
+<img class="rounded-circle" src="{{ MEDIA_URL }}{{ request.user.bookshop.logo }}" width="70" height="70">
+<br/>
+<br/>
+  <h4>Hello, {{ request.user.get_full_name }}</h4>
+  <h5>{{ request.user.bookshop.name }}</h5>
+
+  <div class="list-group">
+    <span class="text-uppercase">Menu</span>
+    <a href="{% url 'shopapp-book' %}" class="list-group-item">BOOKS</a>
+
+    <span class="text-uppercase">Profile</span>
+    <a href="{% url 'shopapp-account' %}" class="list-group-item">PROFILE</a>
+  </div>
+  <br/>
+
+  <div class="text-center">
+      <a href="{% url 'shopapp-sign-out' %}" class="btn btn-danger">EXIT</a>
+  </div>
+</div>
+
+
 {% endblock %}
