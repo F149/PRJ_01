@@ -8,6 +8,10 @@ body {
     background-color: #7B2324;
 }
 
+.text-white {
+    color: white;
+
+}
 
 /* SIDE BAR */
 .sidebar {
@@ -84,6 +88,23 @@ body {
 
 
 /* SIDE BAR-LOGOUT */
+.sidebar > div:last-child {
+    padding: 30px;
+}
+
+.sidebar > div:last-child .btn {
+    width: 100%;
+}
+
 
 /* SIDE BAR-CONTENT */
+.content {
+    padding: 0 40px;
+}
+
+.content .panel {
+    border: none;
+}
+
+
 

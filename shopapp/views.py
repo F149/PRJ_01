@@ -1,25 +1,40 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from shopapp.forms import UserForm, BookshopForm
+from shopapp.forms import UserForm, BookshopForm, UserFormForEdit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
-
 def home(request):
     return redirect(shopapp_home)
 
 
 @login_required(login_url='/shopapp/sign-in/')
 def shopapp_home(request):
-    return render(request, 'shopapp/home.html', {})
+    return redirect(shopapp_book)
 
-@login_required(login_url='/shopapp/sign-account/')
+
+@login_required(login_url='/shopapp/sign-in/')
 def shopapp_account(request):
-    return render(request, 'shopapp/account.html', {})
+    user_form = UserFormForEdit(instance=request.user)
+    book_shop_form = BookshopForm(instance=request.user.bookshop)
 
-@login_required(login_url='/shopapp/book/')
+    if request.method == "POST":
+        user_form = UserFormForEdit(request.POST, instance=request.user)
+        book_shop_form = BookshopForm(request.POST, request.FILES, instance=request.user.bookshop)
+
+        if user_form.is_valid() and book_shop_form.is_valid():
+            user_form.save()
+            book_shop_form.save()
+
+
+    return render(request, 'shopapp/account.html', {
+        'user_form': user_form,
+        'book_shop_form': book_shop_form,
+    })
+
+
 def shopapp_book(request):
     return render(request, 'shopapp/book.html', {})
 
