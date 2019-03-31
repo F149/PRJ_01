@@ -5,6 +5,8 @@ from shopapp.forms import UserForm, BookshopForm, UserFormForEdit, BookForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
+from shopapp.models import Book
+
 # Create your views here.
 def home(request):
     return redirect(shopapp_home)
@@ -37,7 +39,10 @@ def shopapp_account(request):
 
 @login_required(login_url='/shopapp/sign-in/')
 def shopapp_book(request):
-    return render(request, 'shopapp/book.html', {})
+    books = Book.objects.filter(bookshop=request.user.bookshop).order_by("id")
+    return render(request, 'shopapp/book.html', {
+        'books': books,
+    })
 
 
 @login_required(login_url='/shopapp/sign-in/')

@@ -1,5 +1,39 @@
 {% extends 'shopapp/base.html'%}
 
 {% block page %}
-<a href="{% url 'shopapp-add-book' %}" class="btn btn-danger">Add book</a>
+<div class="card">
+    <div class="card-header bg-ruby">
+      <h4 class="card-title text-center text-white">BOOKS</h4>
+    </div>
+    <div class="card-body">
+      <div class="text-right">
+        <a href="{% url 'shopapp-add-book' %}" class="btn btn-danger">Add book</a>
+        <br />
+        <br />
+       <table class="table table-bordered table-hover table-striped">
+         <thead>
+           <tr class="bg-red text-white">
+             <th>ID</th>
+             <th>Title</th>
+             <th>Description</th>
+             <th>Price</th>
+             <th class="text-center">Title image</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for book in books  %}
+             <tr>
+               <td scope="row">{{ book.id }}</td>
+               <td <a href="#">{{ book.name }}</a></td>
+               <td>{{ book.short_description }}</td>
+               <td>{{ book.price }}</td>
+               <td class="text-center"><img class="rounded-circle"
+                 src="{{ MEDIA_URL }}{{ book.logo }}" width="50" height="50"></td>
+             </tr>
+           {% endfor %}
+         </tbody>
+       </table>
+      </div>
+    </div>
+</div>
 {% endblock %}
