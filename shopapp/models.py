@@ -11,3 +11,13 @@ class BookShop(models.Model):
 
     def __str__(self):
         return self.name
+
+class Book(models.Model):
+    bookshop = models.ForeignKey(BookShop, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='book_images/', blank=False)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

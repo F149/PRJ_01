@@ -33,4 +33,5 @@ urlpatterns = [
     path('shopapp/sign-up/', views.shopapp_sign_up, name='shopapp-sign-up'),
     path('shopapp/account/', views.shopapp_account, name='shopapp-account'),
     path('shopapp/book/', views.shopapp_book, name='shopapp-book'),
+    path('shopapp/book/add/', views.shopapp_add_book, name='shopapp-add-book')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

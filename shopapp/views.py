@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from shopapp.forms import UserForm, BookshopForm, UserFormForEdit
+from shopapp.forms import UserForm, BookshopForm, UserFormForEdit, BookForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
@@ -35,8 +35,26 @@ def shopapp_account(request):
     })
 
 
+@login_required(login_url='/shopapp/sign-in/')
 def shopapp_book(request):
     return render(request, 'shopapp/book.html', {})
+
+
+@login_required(login_url='/shopapp/sign-in/')
+def shopapp_add_book(request):
+    form = BookForm()
+    if request.method == "POST":
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.bookshop = request.user.bookshop
+            book.save()
+            return redirect(shopapp_book)
+
+    return render(request, 'shopapp/add_book.html', {
+        'form': form,
+    })
+
 
 
 def shopapp_sign_up(request):

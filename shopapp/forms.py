@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from shopapp.models import BookShop
+from shopapp.models import BookShop, Book
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(max_length=100, required=True)
@@ -30,3 +30,9 @@ class BookshopForm(forms.ModelForm):
                   'phone',
                   'address',
                   'logo')
+
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        exclude = ('bookshop',)
