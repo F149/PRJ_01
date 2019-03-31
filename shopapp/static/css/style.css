@@ -71,7 +71,7 @@ body {
 
 }
 
-.sidebar .list-group .list-group-item:active,
+.sidebar .list-group .list-group-item.active,
 .sidebar .list-group .list-group-item:hover {
     background-color: #3F1E1E;
     color: #E0DEEB;

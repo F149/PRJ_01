@@ -24,7 +24,7 @@
            {% for book in books  %}
              <tr>
                <td scope="row">{{ book.id }}</td>
-               <td <a href="#">{{ book.name }}</a></td>
+               <td><a href="{% url 'shopapp-edit-book' book.id %}">{{ book.name }}</a></td>
                <td>{{ book.short_description }}</td>
                <td>{{ book.price }}</td>
                <td class="text-center"><img class="rounded-circle"

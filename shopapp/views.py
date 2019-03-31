@@ -61,6 +61,19 @@ def shopapp_add_book(request):
     })
 
 
+@login_required(login_url='/shopapp/sign-in/')
+def shopapp_edit_book(request, book_id):
+    form = BookForm(instance = Book.objects.get(id=book_id))
+    if request.method == "POST":
+        form = BookForm(request.POST, request.FILES, instance = Book.objects.get(id=book_id))
+        if form.is_valid():
+            book = form.save()
+            return redirect(shopapp_book)
+
+    return render(request, 'shopapp/edit_book.html', {
+        'form': form,
+    })
+
 
 def shopapp_sign_up(request):
     user_form = UserForm()

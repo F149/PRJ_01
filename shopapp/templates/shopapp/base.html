@@ -3,6 +3,10 @@
 {% block title %}BookShop{% endblock %}
 
 {% block sidebar %}
+
+{% url 'shopapp-book' as shopapp_book_url %}
+{% url 'shopapp-account' as shopapp_account_url %}
+
 <div class="text-center">
 <img class="rounded-circle" src="{{ MEDIA_URL }}{{ request.user.bookshop.logo }}" width="70" height="70">
 <br/>
@@ -12,10 +16,12 @@
 
   <div class="list-group">
     <span class="text-uppercase">Menu</span>
-    <a href="{% url 'shopapp-book' %}" class="list-group-item">BOOKS</a>
+    <a href="{% url 'shopapp-book' %}"
+       class="list-group-item {% if request.path == shopapp_book_url %} active {% endif %}">BOOKS</a>
 
     <span class="text-uppercase">Profile</span>
-    <a href="{% url 'shopapp-account' %}" class="list-group-item">PROFILE</a>
+    <a href="{% url 'shopapp-account' %}"
+        class="list-group-item {% if request.path == shopapp_account_url %} active {% endif %}">PROFILE</a>
   </div>
   <br/>
 
