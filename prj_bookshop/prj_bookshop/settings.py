@@ -25,7 +25,7 @@ SECRET_KEY = 'd%^t5)hj53o*w7fr^y%asq4eowg%n^8la!i%ql#w!&l4z+nw=#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lychee-pie-52639.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
